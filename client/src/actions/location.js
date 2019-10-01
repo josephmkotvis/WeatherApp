@@ -9,28 +9,28 @@ import {
 export const setLocation = (location) => dispatch => {
     dispatch({
         type: SET_LOCATION,
-        payload : location
+        payload: location
     });
 }
 
 export const removeLocation = (id) => dispatch => {
     dispatch({
         type: REMOVE_LOCATION,
-        payload : {id}
+        payload: { id }
     });
 }
 
 export const loadLocations = () => async dispatch => {
     try {
         const res = await axios.get('/api/locations');
-        res.data.forEach(location =>{
+        res.data.forEach(location => {
             dispatch(setLocation(location))
         }
-            
-            )
+
+        )
     } catch (err) {
         const errors = err.response.data.errors;
-        if (errors){
+        if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'error', 'error')));
         }
     }
@@ -39,6 +39,6 @@ export const loadLocations = () => async dispatch => {
 export const selectLocation = (id) => dispatch => {
     dispatch({
         type: SELECT_LOCATION,
-        payload : id
+        payload: id
     });
 }

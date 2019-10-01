@@ -5,7 +5,7 @@ export const setAlert = (msg, alertType, icon = alertType, timeout = 5000) => di
     const id = uuid.v4();
     dispatch({
         type: SET_ALERT,
-        payload: { msg, alertType, icon, id}
+        payload: { msg, alertType, icon, id }
     });
     setTimeout(() => dispatch({
         type: REMOVE_ALERT,

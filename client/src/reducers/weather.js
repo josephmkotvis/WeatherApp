@@ -1,27 +1,25 @@
 import {
-   LOAD_WEATHER,
-   LOAD_WEATHER_FAILED
+    WEATHER_LOADED,
+    WEATHER_FAILED
 } from '../actions/types';
 
-const initialState= {
-    weather: [],
-    loading: true
-};
+const initialState = {};
 
-export default function(state = initialState, action){
+export default function (state = initialState, action) {
 
-    const {type, payload} = action;
+    const { type, payload } = action;
 
-    switch(type){
-       case LOAD_WEATHER:
-        return {
-            ...state,
-            weather: [...state.weather, payload],
-            loading:false
-        };
-        case LOAD_WEATHER_FAILED:
+    switch (type) {
+        case WEATHER_LOADED:
             return {
                 ...state,
+                ...payload,
+                loading: false
+            };
+        case WEATHER_FAILED:
+            return {
+                ...state,
+                ...initialState,
                 loading: false
             }
         default:

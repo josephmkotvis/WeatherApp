@@ -1,10 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
 const Navbar = () => {
-    return (
+  return (
     <div className="slds-context-bar">
       <div className="slds-context-bar__primary">
         <div className="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click slds-no-hover">
@@ -40,7 +40,7 @@ const Navbar = () => {
         </ul>
       </nav>
     </div>
-    )
+  )
 }
 
 export default Navbar
