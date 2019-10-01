@@ -15,7 +15,7 @@ const Location = ({ locations, selected, loadWeather }) =>
         id={`slds-vertical-tabs-${index} nav`}
         onClick={() => loadWeather(location)}>
         <span className="slds-vertical-tabs__left-icon"></span>
-        <span className="slds-truncate" title={`Tab ${index + 1}`} > {location.name} </span>
+        <span className="slds-truncate" title={`Tab ${index + 1}`} > {location.name} - {location.city} </span>
         <span className="slds-vertical-tabs__right-icon"></span>
       </Link>
     </li>

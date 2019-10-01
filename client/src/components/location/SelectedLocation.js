@@ -2,18 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DesertSVG from '../common/DesertSVG';
+import LocationDetailCard from './LocationDetailCard';
+import WeatherCard from '../weather/WeatherCard';
 
 
 
 const SelectedLocation = ({ location, weather }) => {
     return (
         location._id ?
-            <div onClick={() => console.log('w', weather, 'l', location)}>
-                {location.name}
-                {weather.name}
+            <div>
+                <LocationDetailCard location={location} />
+                <WeatherCard weather={weather} />
             </div>
             :
-            <DesertSVG msg='No location is selected' />
+            <DesertSVG msg='No location is selected' size='large' />
     );
 };
 

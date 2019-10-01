@@ -11,7 +11,7 @@ import {weatherAPIKEY} from '../config/keys';
 export const loadWeather = (location) => async dispatch => {
     try {
         dispatch(selectLocation(location._id));
-        let url = "http://api.openweathermap.org/data/2.5/weather?q=" +  location.city + "&units=metric&APPID=" + weatherAPIKEY;
+        let url = "http://api.openweathermap.org/data/2.5/weather?q=" +  location.city + "&units=imperial&APPID=" + weatherAPIKEY;
         const res = await axios.get(url);
         dispatch({
             type: WEATHER_LOADED,
