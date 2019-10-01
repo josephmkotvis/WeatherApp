@@ -1,12 +1,19 @@
 import {
     SET_LOCATION,
-    REMOVE_LOCATION 
+    REMOVE_LOCATION, 
+    SELECT_LOCATION
 } from '../actions/types';
 
 const initialState= {
     locations: [],
     loading: true,
-    selected: null
+    selected: {
+        _id: null,
+        name: '',
+        description: '',
+        city: '',
+        cityId: 0
+    }
 };
 
 export default function(state = initialState, action){
@@ -21,7 +28,15 @@ export default function(state = initialState, action){
                 loading:false
             };
         case REMOVE_LOCATION:
-            return state.filter(location => location.id !== payload);
+            return {
+                ...state,
+                locations: state.locations.filter(location => location.id !== payload)
+            }
+        case SELECT_LOCATION:
+               return {
+                ...state,
+                selected: state.locations.find( location => location._id === payload)
+            }    
         default:
             return state;
     }

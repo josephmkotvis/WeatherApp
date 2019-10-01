@@ -25,7 +25,7 @@ const Navbar = () => {
             </button>
           </div>
           <span className="slds-context-bar__label-action slds-context-bar__app-name">
-            <span className="slds-truncate" title="App Name">App Name</span>
+            <span className="slds-truncate" title="App Name"> Weather App </span>
           </span>
         </div>
       </div>

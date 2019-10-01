@@ -5,7 +5,7 @@ import Alert from './components/layout/Alert';
 //Redux
 import { Provider } from 'react-redux';
 import store from './store'; 
-import Navbar from './components/layout/Navbar 17-20-46-135';
+import Navbar from './components/layout/Navbar';
 
 
 
@@ -13,8 +13,8 @@ const App = () => (
     <Provider store = {store}>
     <Router>
       <Fragment>
+      <Alert />
         <Navbar />
-          <Alert />
              <Route  exact path="/" component = {Weather} />
              <section className="container">
                 <Switch>

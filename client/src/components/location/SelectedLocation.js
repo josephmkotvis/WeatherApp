@@ -1,10 +1,10 @@
-import React, {Fragment, useState} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 
 
-const LocationDetails = ( {} ) => {
+const SelectedLocation = ( {location} ) => {
     // const [formData, setFormData] = useState(
     //     {
     //         name: '',
@@ -17,18 +17,19 @@ const LocationDetails = ( {} ) => {
 
 
     return (
-        <div>
-            
+        <div onClick= {() => console.log(location)}>
+            {location.name}
         </div>
     ); 
 };
 
-Register.propTypes = {
-    location: state.location.selected
+
+SelectedLocation.propTypes = {
+    location: PropTypes.object
 }
 
 const mapStateToProps = state => ({
-    alerts: state.alert
+    location: state.location.selected
 });
 
-export default connect(mapStateToProps, { })(LocationDetails);
+export default connect(mapStateToProps)(SelectedLocation);

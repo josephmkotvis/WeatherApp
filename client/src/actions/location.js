@@ -3,6 +3,7 @@ import { setAlert } from './alert';
 import {
     SET_LOCATION,
     REMOVE_LOCATION,
+    SELECT_LOCATION
 } from './types';
 
 export const setLocation = (location) => dispatch => {
@@ -35,3 +36,9 @@ export const loadLocations = () => async dispatch => {
     }
 }
 
+export const selectLocation = (id) => dispatch => {
+    dispatch({
+        type: SELECT_LOCATION,
+        payload : id
+    });
+}
