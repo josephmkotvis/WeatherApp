@@ -1,5 +1,7 @@
 import React from 'react'
 import moment from 'moment';
+import WeatherPicker from './WeatherPicker';
+import weather from '../../reducers/weather';
 
 const WeatherRow = ({ weatherInfos }) =>
     weatherInfos !== null && weatherInfos.length > 0 && weatherInfos.map((weatherInfo, index) => {
@@ -11,10 +13,7 @@ const WeatherRow = ({ weatherInfos }) =>
                     </div>
                 </th>
                 <td role="gridcell">
-                    <div className="slds-truncate" title="Company One" onClick={() => { console.log(weatherInfo) }}>
-                        <img src={`http://openweathermap.org/img/wn/${weatherInfo.weather.icon}@2x.png`} className="slds-icon slds-icon-text-default" alt={weatherInfo.weather.main} />
-                        {weatherInfo.weather.main}
-                    </div>
+                    <WeatherPicker weatherOptions={weatherInfo.weather} />
                 </td>
                 <td role="gridcell">
                     <div className="slds-truncate" title="Director of Operations">
