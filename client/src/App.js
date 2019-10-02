@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Weather from './components/weather/Weather';
+import WeatherPage from './components/weather/WeatherPage';
 import Alert from './components/layout/Alert';
 //Redux
 import { Provider } from 'react-redux';
@@ -15,7 +15,7 @@ const App = () => (
       <Fragment>
         <Alert />
         <Navbar />
-        <Route exact path="/" component={Weather} />
+        <Route exact path="/" component={WeatherPage} />
         <section className="container">
           <Switch>
           </Switch>

@@ -23,14 +23,16 @@ router.get('/', async (req, res)=> {
 // @access   Private
 router.post( 
     '/',
-    [
-        check('name', 'Name is required')
-          .not()
-          .isEmpty(),
-        check('city', 'City is required')
-          .not()
-          .isEmpty()
-    ],
+[
+    check('name', 'Name is required')
+      .not()
+      .isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check(
+      'password',
+      'Please enter a password with 6 or more characters'
+    ).isLength({ min: 6 })
+  ],
     async (req, res) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {

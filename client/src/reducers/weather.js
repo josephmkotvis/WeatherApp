@@ -3,7 +3,10 @@ import {
     WEATHER_FAILED
 } from '../actions/types';
 
-const initialState = {};
+const initialState = {
+    currentWeather: {},
+    forecast: {}
+};
 
 export default function (state = initialState, action) {
 
@@ -11,16 +14,20 @@ export default function (state = initialState, action) {
 
     switch (type) {
         case WEATHER_LOADED:
+            console.log({
+                ...state,
+                currentWeather: payload.currentWeather,
+                forecast: payload.forecast
+            })
             return {
                 ...state,
-                ...payload,
-                loading: false
-            };
+                currentWeather: payload.currentWeather,
+                forecast: payload.forecast
+            }
         case WEATHER_FAILED:
             return {
                 ...state,
-                ...initialState,
-                loading: false
+                ...initialState
             }
         default:
             return state;

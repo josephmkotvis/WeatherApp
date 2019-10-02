@@ -1,17 +1,17 @@
 import React from 'react'
 
-const LocationDetailCard = ({ location }) => {
+const LocationDetailCard = ({ location, currentWeather }) => {
 
     return (
         <article className="slds-card">
             <div className="slds-card__header slds-grid">
                 <header className="slds-media slds-media_center slds-has-flexi-truncate">
                     <div className="slds-media__figure">
-                        <span className="slds-icon_container slds-icon-standard-location" title="location">
+                        <span className="slds-icon_container slds-icon-standard-account" title="Location">
                             <svg className="slds-icon slds-icon_small" aria-hidden="true">
-                                <use xlinkHref="/assets/icons/standard-sprite/svg/symbols.svg#location"></use>
+                                <use xlinkHref="/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
                             </svg>
-                            <span className="slds-assistive-text">location</span>
+                            <span className="slds-assistive-text">Location</span>
                         </span>
                     </div>
                     <div className="slds-media__body">

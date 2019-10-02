@@ -4,10 +4,11 @@ import { loadLocations } from '../../actions/location';
 import Location from '../location/Location';
 import store from '../../store';
 import SelectedLocation from '../location/SelectedLocation';
+import NewLocationButton from '../location/NewLocationButton';
 
 // import {Link} from 'react-router-dom';
 
-const Weather = () => {
+const WeatherPage = () => {
 
   useEffect(() => {
     store.dispatch(loadLocations());
@@ -22,6 +23,7 @@ const Weather = () => {
     <div className="slds-vertical-tabs" style={fullheight}>
       <ul className="slds-vertical-tabs__nav" role="tablist" aria-orientation="vertical">
         <Location />
+        <NewLocationButton />
       </ul>
       <div className="slds-vertical-tabs__content slds-show" id="slds-vertical-tabs-0" role="tabpanel" aria-labelledby="slds-vertical-tabs-0__nav">
         <div className="slds-text-longform">
@@ -32,4 +34,4 @@ const Weather = () => {
   )
 }
 
-export default Weather
+export default WeatherPage
