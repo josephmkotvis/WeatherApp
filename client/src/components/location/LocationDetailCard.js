@@ -1,9 +1,10 @@
 import React from 'react'
+import WeatherTable from '../weather/WeatherTable'
 
 const LocationDetailCard = ({ location, currentWeather }) => {
 
     return (
-        <article className="slds-card">
+        <article className="slds-card" >
             <div className="slds-card__header slds-grid">
                 <header className="slds-media slds-media_center slds-has-flexi-truncate">
                     <div className="slds-media__figure">
@@ -24,6 +25,7 @@ const LocationDetailCard = ({ location, currentWeather }) => {
                 </header>
             </div>
             <div className="slds-card__body slds-card__body_inner"> {location.description} </div>
+            <WeatherTable dataArray={[currentWeather]} />
         </article>
     )
 }

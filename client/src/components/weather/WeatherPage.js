@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react'
-// import { relative } from 'path';
 import { loadLocations } from '../../actions/location';
 import Location from '../location/Location';
-import store from '../../store';
 import SelectedLocation from '../location/SelectedLocation';
 import NewLocationButton from '../location/NewLocationButton';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-// import {Link} from 'react-router-dom';
 
-const WeatherPage = () => {
+const WeatherPage = ({isAddingLocation, loadLocations}) => {
 
   useEffect(() => {
-    store.dispatch(loadLocations());
+    loadLocations();
   }, []);
 
 
@@ -26,12 +25,28 @@ const WeatherPage = () => {
         <NewLocationButton />
       </ul>
       <div className="slds-vertical-tabs__content slds-show" id="slds-vertical-tabs-0" role="tabpanel" aria-labelledby="slds-vertical-tabs-0__nav">
-        <div className="slds-text-longform">
+        <div className="slds-text-longform" >
+          { isAddingLocation ? 
+          <div> 111 </div>
+          :
           <SelectedLocation />
+
+          }
         </div>
       </div>
     </div>
   )
 }
 
-export default WeatherPage
+WeatherPage.propTypes = {
+  selected: PropTypes.object,
+  isAddingLocation: PropTypes.bool.isRequired
+
+}
+
+const mapStateToProps = state => ({
+  selected: state.location.selected,
+  isAddingLocation: state.location.isAddingLocation
+});
+
+export default connect(mapStateToProps, {loadLocations })(WeatherPage);

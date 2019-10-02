@@ -3,9 +3,24 @@ import { setAlert } from './alert';
 import {
     SET_LOCATION,
     REMOVE_LOCATION,
-    SELECT_LOCATION
+    SELECT_LOCATION,
+    ADD_LOCATION,
+    STOP_ADDING_LOCATION
 } from './types';
 import { loadWeather } from './weather';
+
+
+export const addLocation = () => dispatch => {
+    dispatch({
+        type: ADD_LOCATION
+        });
+}
+
+export const stopAddingLocation = () => dispatch => {
+    dispatch({
+        type: STOP_ADDING_LOCATION
+    });
+}
 
 export const setLocation = (location) => dispatch => {
     dispatch({
@@ -43,4 +58,5 @@ export const selectLocation = (id) => dispatch => {
         type: SELECT_LOCATION,
         payload: id
     });
+    dispatch(stopAddingLocation());
 }

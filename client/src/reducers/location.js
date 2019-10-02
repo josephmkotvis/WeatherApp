@@ -1,7 +1,9 @@
 import {
     SET_LOCATION,
     REMOVE_LOCATION,
-    SELECT_LOCATION
+    SELECT_LOCATION,
+    ADD_LOCATION,
+    STOP_ADDING_LOCATION
 } from '../actions/types';
 
 const initialState = {
@@ -13,7 +15,8 @@ const initialState = {
         description: '',
         city: '',
         cityId: 0
-    }
+    },
+    isAddingLocation: false
 };
 
 export default function (state = initialState, action) {
@@ -36,6 +39,17 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 selected: state.locations.find(location => location._id === payload)
+            }
+        case ADD_LOCATION:
+            return {
+                ...state,
+                selected: initialState.selected,
+                isAddingLocation: true
+            }
+        case STOP_ADDING_LOCATION:
+            return {
+                ...state,
+                isAddingLocation: false
             }
         default:
             return state;

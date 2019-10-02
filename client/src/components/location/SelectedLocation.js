@@ -7,11 +7,11 @@ import Forecast from '../weather/Forecast';
 
 
 
-const SelectedLocation = ({ location, forecasts }) => {
+const SelectedLocation = ({ location, weather, forecasts }) => {
     return (
         location._id ?
             <div >
-                <LocationDetailCard location={location} />
+                <LocationDetailCard location={location} currentWeather={weather[location.city]}/>
                 {
                     forecasts[location.city] ? 
                     <Forecast forecast={forecasts[location.city]} />
@@ -27,11 +27,13 @@ const SelectedLocation = ({ location, forecasts }) => {
 
 SelectedLocation.propTypes = {
     location: PropTypes.object,
+    weather: PropTypes.object,
     forecasts: PropTypes.object
 }
 
 const mapStateToProps = state => ({
     location: state.location.selected,
+    weather: state.weather,
     forecasts: state.forecast
 });
 
