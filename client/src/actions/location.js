@@ -5,9 +5,11 @@ import {
     REMOVE_LOCATION,
     SELECT_LOCATION,
     ADD_LOCATION,
-    STOP_ADDING_LOCATION
+    STOP_ADDING_LOCATION,
+    CREATE_LOCATION
 } from './types';
 import { loadWeather } from './weather';
+import { loadForecast } from './forecast';
 
 
 export const addLocation = () => dispatch => {
@@ -53,10 +55,42 @@ export const loadLocations = () => async dispatch => {
     }
 }
 
-export const selectLocation = (id) => dispatch => {
+export const selectLocation = (location) => dispatch => {
     dispatch({
         type: SELECT_LOCATION,
-        payload: id
+        payload: location._id
     });
+    dispatch(loadForecast(location));
     dispatch(stopAddingLocation());
+}
+
+export const createLocation = ({name, description, city}) => async (dispatch, getState) =>{
+    try {
+        const cachedWeather = getState().weather[city];
+
+        if (!cachedWeather) {
+            dispatch(loadWeather({name, description, city}));
+        }
+
+        const cityLoaded = getState().weather[city];
+     
+        if(!cityLoaded){
+            dispatch(setAlert('Incorrect City Value' , 'error', 'error'))
+        }
+        else{
+            const res = await axios.post('/api/locations', {name, description, city});        
+
+            dispatch(setLocation(res.data));
+            dispatch(selectLocation(res.data));
+        }
+
+    } catch (err) {
+        const errors = err.response.data.errors;
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'error', 'error')));
+        }
+    }    dispatch({
+        type: CREATE_LOCATION,
+        payload: {}
+    })
 }

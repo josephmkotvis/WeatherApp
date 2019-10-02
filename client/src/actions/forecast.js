@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { selectLocation } from './location';
 import {
     FORECAST_LOADED,
     WEATHER_FAILED
@@ -12,7 +11,6 @@ import { returnFixedDate } from '../utils/utils'
 
 export const loadForecast = (location) => async (dispatch, getState) => {
     try {
-        dispatch(selectLocation(location._id));
 
         let cachedForcasts = getState().forecast[location.city]
         if (!cachedForcasts) {

@@ -3,6 +3,7 @@ import { loadLocations } from '../../actions/location';
 import Location from '../location/Location';
 import SelectedLocation from '../location/SelectedLocation';
 import NewLocationButton from '../location/NewLocationButton';
+import LocationForm from '../location/LocationForm';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -27,7 +28,7 @@ const WeatherPage = ({isAddingLocation, loadLocations}) => {
       <div className="slds-vertical-tabs__content slds-show" id="slds-vertical-tabs-0" role="tabpanel" aria-labelledby="slds-vertical-tabs-0__nav">
         <div className="slds-text-longform" >
           { isAddingLocation ? 
-          <div> 111 </div>
+          <LocationForm />
           :
           <SelectedLocation />
 

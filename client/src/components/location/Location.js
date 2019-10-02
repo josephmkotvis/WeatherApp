@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { loadForecast } from '../../actions/forecast';
+import { selectLocation } from '../../actions/location';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import WeatherIcon from '../weather/WeatherIcon';
 
-const Location = ({ locations, selected, weather, isAddingLocation, loadForecast }) =>
+const Location = ({ locations, selected, weather, isAddingLocation, selectLocation }) =>
   locations !== null && locations.length > 0 && locations.map((location, index) => (
     <li key={index} className={'slds-vertical-tabs__nav-item ' + (selected._id === location._id && !isAddingLocation ? "slds-is-active" : "")} title={`Tab ${index + 1}`} role="presentation"    >
       <Link className="slds-vertical-tabs__link" to="/"
@@ -14,7 +14,7 @@ const Location = ({ locations, selected, weather, isAddingLocation, loadForecast
         aria-selected="true"
         aria-controls={`slds-vertical-tabs-${index}`}
         id={`slds-vertical-tabs-${index} nav`}
-        onClick={() => loadForecast(location)}>
+        onClick={() => selectLocation(location)}>
         <span className="slds-truncate" title={`Tab ${index + 1}`} >
           {location.name} - {location.city}
           {weather[location.city] ?
@@ -43,7 +43,7 @@ Location.propTypes = {
   locations: PropTypes.array.isRequired,
   selected: PropTypes.object,
   weather: PropTypes.object,
-  loadForecast: PropTypes.func.isRequired,
+  selectLocation: PropTypes.func.isRequired,
   isAddingLocation: PropTypes.bool
 
 }
@@ -55,4 +55,4 @@ const mapStateToProps = state => ({
   isAddingLocation: state.location.isAddingLocation
 });
 
-export default connect(mapStateToProps, { loadForecast })(Location);
+export default connect(mapStateToProps, { selectLocation })(Location);
