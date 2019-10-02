@@ -1,7 +1,6 @@
 import React from 'react'
 import moment from 'moment';
 import WeatherPicker from './WeatherPicker';
-import weather from '../../reducers/weather';
 
 const WeatherRow = ({ weatherInfos }) =>
     weatherInfos !== null && weatherInfos.length > 0 && weatherInfos.map((weatherInfo, index) => {

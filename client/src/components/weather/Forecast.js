@@ -2,7 +2,7 @@ import React from 'react'
 import WeatherRow from './WeatherRow';
 
 
-const Forecast = ({ weather }) => weather !== null && Object.keys(weather).length > 0 &&  Object.keys(weather).map(date => {
+const Forecast = ({ forecast }) => forecast !== null && Object.keys(forecast).length > 0 &&  Object.keys(forecast).map(date => {
     return (
         <article className="slds-card" key={date}>
             <div className="slds-card__header slds-grid">
@@ -46,7 +46,7 @@ const Forecast = ({ weather }) => weather !== null && Object.keys(weather).lengt
                         </tr>
                     </thead>
                     <tbody>
-                        <WeatherRow weatherInfos={weather[date]}/>
+                        <WeatherRow weatherInfos={forecast[date]}/>
                     </tbody>
                 </table>
             </div>

@@ -5,6 +5,7 @@ import {
     REMOVE_LOCATION,
     SELECT_LOCATION
 } from './types';
+import { loadWeather } from './weather';
 
 export const setLocation = (location) => dispatch => {
     dispatch({
@@ -23,11 +24,12 @@ export const removeLocation = (id) => dispatch => {
 export const loadLocations = () => async dispatch => {
     try {
         const res = await axios.get('/api/locations');
+        
         res.data.forEach(location => {
-            dispatch(setLocation(location))
-        }
-
-        )
+            dispatch(loadWeather(location));
+            dispatch(setLocation(location));
+        })
+            
     } catch (err) {
         const errors = err.response.data.errors;
         if (errors) {

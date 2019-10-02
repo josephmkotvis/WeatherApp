@@ -1,8 +1,9 @@
 import React from 'react'
+import WeatherIcon from './WeatherIcon';
 
 const WeatherPicker = ({ weatherOptions }) => {
 
-    const indexShown = 0;
+    let indexShown = 0;
 
     return (
         <div className="slds-truncate" title="Company One" onClick={() => { console.log(weatherOptions[indexShown]) }}>
@@ -17,8 +18,7 @@ const WeatherPicker = ({ weatherOptions }) => {
                 :
                 null
             }
-
-            <img src={`http://openweathermap.org/img/wn/${weatherOptions[indexShown].icon}@2x.png`} className="slds-icon slds-icon-text-default" alt={weatherOptions[indexShown].main} />
+            <WeatherIcon icon={weatherOptions[indexShown].icon} alt={weatherOptions[indexShown].main} />
             {weatherOptions[indexShown].main}
 
 
