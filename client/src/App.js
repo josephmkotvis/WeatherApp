@@ -16,10 +16,10 @@ const App = () => (
       <Fragment>
         <Alert />
         <Navbar />
-        <Route exact path="/" component={WeatherPage} />
         <section className="container">
           <Switch>
-          <Route exact path="*" component= {PageNotFound} />
+          <Route exact path="/" component={WeatherPage} />
+          <Route path="*" component= {PageNotFound} />
           </Switch>
         </section>
       </Fragment>
