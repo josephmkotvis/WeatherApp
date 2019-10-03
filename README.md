@@ -13,6 +13,8 @@ To run on your local:
 Run npm install in the main directory and client directory.
 
 Export the openWeatherMapAPI key as a const weatherAPIKEY in client/src/utils.
+ex:
+export const weatherAPIKEY = '{Your openWeatherMap API key}';
 
 Your config/default.json should look as following :
 {
