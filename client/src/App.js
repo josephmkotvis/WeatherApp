@@ -6,6 +6,7 @@ import Alert from './components/layout/Alert';
 import { Provider } from 'react-redux';
 import store from './store';
 import Navbar from './components/layout/Navbar';
+import PageNotFound from './components/layout/PageNotFound';
 
 
 
@@ -18,6 +19,7 @@ const App = () => (
         <Route exact path="/" component={WeatherPage} />
         <section className="container">
           <Switch>
+          <Route exact path="*" component= {PageNotFound} />
           </Switch>
         </section>
       </Fragment>
