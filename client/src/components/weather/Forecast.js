@@ -8,7 +8,7 @@ const Forecast = ({ forecast }) => forecast !== null && Object.keys(forecast).le
             <div className="slds-card__header slds-grid">
                 <header className="slds-media slds-media_center slds-has-flexi-truncate">
                     <div className="slds-media__figure">
-                        <span className="slds-icon_container slds-icon-standard-account" title="date_input">
+                        <span className="slds-icon_container slds-icon-standard-date-time" title="date_input">
                             <svg className="slds-icon slds-icon_small" aria-hidden="true">
                                 <use xlinkHref="/assets/icons/standard-sprite/svg/symbols.svg#date_input"></use>
                             </svg>

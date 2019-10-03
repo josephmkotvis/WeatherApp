@@ -8,7 +8,7 @@ const Alert = ({ alerts, closeAlert }) =>
   alerts !== null && alerts.length > 0 && alerts.map(alert => (
 
     <div key={alert.id} className={`slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_${alert.alertType}`} role="alert">
-      <span className="slds-assistive-text">warning</span>
+      <span className="slds-assistive-text">{alert.alertType}</span>
       <span className="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title={alert.icon}>
         <svg className="slds-icon slds-icon_x-small" aria-hidden="true">
           <use xlinkHref={`/assets/icons/utility-sprite/svg/symbols.svg#${alert.icon}`}></use>
