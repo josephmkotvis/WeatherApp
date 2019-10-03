@@ -46,4 +46,3 @@ export const loadWeather = (location) => async (dispatch, getState) => {
         })
     }
 }
-

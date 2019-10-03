@@ -6,16 +6,18 @@ import {
     SELECT_LOCATION,
     ADD_LOCATION,
     STOP_ADDING_LOCATION,
-    CREATE_LOCATION
+    WEATHER_LOADED
 } from './types';
 import { loadWeather } from './weather';
 import { loadForecast } from './forecast';
+import { weatherAPIKEY } from '../utils/keys';
+import { returnFixedDate } from '../utils/utils';
 
 
 export const addLocation = () => dispatch => {
     dispatch({
         type: ADD_LOCATION
-        });
+    });
 }
 
 export const stopAddingLocation = () => dispatch => {
@@ -41,12 +43,12 @@ export const removeLocation = (id) => dispatch => {
 export const loadLocations = () => async dispatch => {
     try {
         const res = await axios.get('/api/locations');
-        
+
         res.data.forEach(location => {
             dispatch(loadWeather(location));
             dispatch(setLocation(location));
         })
-            
+
     } catch (err) {
         const errors = err.response.data.errors;
         if (errors) {
@@ -64,33 +66,50 @@ export const selectLocation = (location) => dispatch => {
     dispatch(stopAddingLocation());
 }
 
-export const createLocation = ({name, description, city}) => async (dispatch, getState) =>{
+
+
+export const createLocation = ({ name, description, city }) => async (dispatch, getState) => {
     try {
         const cachedWeather = getState().weather[city];
 
         if (!cachedWeather) {
-            dispatch(loadWeather({name, description, city}));
+            try {
+                const currentUrl = "http://api.openweathermap.org/data/2.5/weather?APPID=" + weatherAPIKEY + "&units=imperial&q=" + city + "";
+                const currentRes = await axios.get(currentUrl);
+                if (currentRes) {
+                    const res = await axios.post('/api/locations', { name, description, city });
+                    const { main, timezone, dt, weather, wind } = currentRes.data;
+                    dispatch({
+                        type: WEATHER_LOADED,
+                        payload: {
+                            city: city,
+                            weather: {
+                                time: returnFixedDate(dt, timezone),
+                                temp: main.temp,
+                                humidity: main.humidity,
+                                weather: weather,
+                                wind: wind
+                            }
+                        }
+                    });
+                    dispatch(setLocation(res.data));
+                    dispatch(selectLocation(res.data));
+                }
+            } catch (err) {
+                dispatch(setAlert('Incorrect City Value', 'error', 'error'));
+            }
         }
-
-        const cityLoaded = getState().weather[city];
-     
-        if(!cityLoaded){
-            dispatch(setAlert('Incorrect City Value' , 'error', 'error'))
-        }
-        else{
-            const res = await axios.post('/api/locations', {name, description, city});        
-
+        else {
+            const res = await axios.post('/api/locations', { name, description, city });
             dispatch(setLocation(res.data));
             dispatch(selectLocation(res.data));
         }
+
 
     } catch (err) {
         const errors = err.response.data.errors;
         if (errors) {
             errors.forEach(error => dispatch(setAlert(error.msg, 'error', 'error')));
         }
-    }    dispatch({
-        type: CREATE_LOCATION,
-        payload: {}
-    })
+    }
 }
